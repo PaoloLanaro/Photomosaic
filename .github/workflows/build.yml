@@ -1,0 +1,70 @@
+name: pa02_Photomosaic
+
+on: [push]
+
+env:
+  EXE_NAME: Photomosaic
+
+jobs:
+  build:
+    name: Project_Building
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+
+      - name: Checkout project repo from GitHub
+        uses: actions/checkout@v1
+
+      - name: Executable name Environment Variable Check
+        run: |
+          echo $EXE_NAME
+          echo " "
+          echo ${{runner.workspace}}
+          echo " "
+          echo $GITHUB_WORKSPACE
+          echo " "
+          g++ --version
+          cmake --version
+
+      - name: Create build environment
+        #run: cmake -E make_directory ${{runner.workspace}}/build
+        run:  mkdir ${{runner.workspace}}/build
+
+      - name: Configure the build
+        # Use a bash shell so we can use the same syntax for environment variable
+        # access regardless of the host operating system
+        shell: bash
+        working-directory: ${{runner.workspace}}/build
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
+      - name: Build the project
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        # Execute the build.  You can specify a specific target with "--target <NAME>"
+        run: cmake --build .
+
+      - name: Run the project
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        # NOTE: You may need to update the path to your sample files
+        # in this command.
+        run: ./$EXE_NAME $GITHUB_WORKSPACE/test_files/hello.txt $GITHUB_WORKSPACE/test_files/gh_out.txt
+
+#      - name: Copy output files to artifact directory
+#        working-directory: ${{runner.workspace}}/build
+#        # NOTE: you may need to update the path to your sample files
+#        # in the for loop below.
+#        run: |
+#          mkdir artifacts
+#          for f in $GITHUB_WORKSPACE/test_files/*
+#          do
+#            echo "  Copying $f"
+#            cp $f artifacts/
+#          done
+#
+#      - name: Upload output files to GitHub so they can be reviewed
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: project_output
+#          path: ${{runner.workspace}}/build/artifacts
