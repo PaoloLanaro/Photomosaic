@@ -63,7 +63,7 @@ jobs:
           for f in $GITHUB_WORKSPACE/sampleImages/mosaics/*
           do
             echo "  Copying $f"
-            cp $f artifacts/
+            cp -r $f artifacts/
           done
 #
       - name: Upload output files to GitHub so they can be reviewed
