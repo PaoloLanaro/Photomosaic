@@ -54,6 +54,9 @@ jobs:
         # in this command.
         run: ./$EXE_NAME -t
 
+      - name: Wait for images to be generated
+        run: sleep 30
+
       - name: Copy output files to artifact directory
         working-directory: ${{runner.workspace}}/build
         run: |
