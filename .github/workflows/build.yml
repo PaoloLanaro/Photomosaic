@@ -49,22 +49,22 @@ jobs:
         shell: bash
         # NOTE: You may need to update the path to your sample files
         # in this command.
-        run: ./$EXE_NAME $GITHUB_WORKSPACE/test_files/hello.txt $GITHUB_WORKSPACE/test_files/gh_out.txt
+        run: ./$EXE_NAME -t
 
-#      - name: Copy output files to artifact directory
-#        working-directory: ${{runner.workspace}}/build
+      - name: Copy output files to artifact directory
+        working-directory: ${{runner.workspace}}/build
 #        # NOTE: you may need to update the path to your sample files
 #        # in the for loop below.
-#        run: |
-#          mkdir artifacts
-#          for f in $GITHUB_WORKSPACE/test_files/*
-#          do
-#            echo "  Copying $f"
-#            cp $f artifacts/
-#          done
+        run: |
+          mkdir artifacts
+          for f in $GITHUB_WORKSPACE/sampleImages/mosaics/*
+          do
+            echo "  Copying $f"
+            cp $f artifacts/
+          done
 #
-#      - name: Upload output files to GitHub so they can be reviewed
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: project_output
-#          path: ${{runner.workspace}}/build/artifacts
+      - name: Upload output files to GitHub so they can be reviewed
+        uses: actions/upload-artifact@v1
+        with:
+          name: project_output
+          path: ${{runner.workspace}}/build/artifacts

@@ -1,0 +1,80 @@
+Resize the whole data set library to 128 x 128 or 256 x 256,
+Read in average red, green, and blue from source images library. Average pixel of the image.
+Put these images into the original image.
+
+Figure out how to deal with average pixels of two+ images being the same.
+    (probably start the project by just chucking duplicate average RGB values)
+Write the photomosaic to user inputted file path.
+
+AVL tree will be value based container. That means store a copy, not a reference.
+Inside of AVLMap, can't use other container classes.
+
+Use Image class from PA02 (average RGB value, and rescale).
+Copy the appropriate header files into PA03 rep.
+Update CMakeList.txt to support us having moved the source file over.
+
+Add class Photomosaic. Implement appropriate main driver.
+3 Command line args (input, src, output)
+1 Command line args (for testing)
+Interactive mode    (absence of command line args)
+
+Don't push large 1k photo library to github, we can have a smaller 15-20 for proof of concept.
+Store the 1k photo library outside the repo.
+Github actions is going to use the 3 command line args implementation.
+Change CMakeLists so that it imports the 15 src image folder. One line, can be found on stack overflow (green check)
+Upload artifact with original image I choose, and resulting image.
+Pre-processing of images is very slow. Use different build types. (for speed use the Release build type)
+    (check slides to get there)
+Slide 17 is only really if we want to think about those.
+
+Could be
+"Close enough" pixel that does not go over the RGB values is used in the final image.
+image after this is post processed image:
+Key will be pixel object, with average R, average G, and average B and value will be image
+Up to us to compare two pixels.
+
+Should implement standard map functionality.
+
+Mark Allen Weiss has good books and has good AVL tree things to check out for.
+
+
+
+
+
+
+
+
+
+
+Can we include insertImage(int topRightX, int topRightLeft, Image imageToPlaceAtLoc) in Image class.    yes
+Pixel getAvgRGB() vs                                                                            can \/\/\/
+Pixel getAvgRGB(int& x, int&y, int& size)                                                       have default params so that i can get the original pictures grids
+question about #include util, and using namespace relops in Pixel cpp class.                    when i run it i'll see
+
+
+
+map by reference.
+create empty map, fill it in once, and just destruct it once at the end.
+map constructor (obviously)
+map destructor
+map copy constructor            (should both call copyMap(Map) probably)
+map copy assignment operator    (should both call copyMap(Map) probably)
+
+
+
+Photomosaic {
+
+}
+
+
+insertImage(int x, int y, Image image) in Image.
+Line 36 of driver
+
+
+
+
+
+
+Include only like 16 images. try and get good variety of colors (one of each wool?)
+basically delete whole cmake project and reload it to make sure all that gets
+added is what i want. also remove the archive directory from project just in case.
