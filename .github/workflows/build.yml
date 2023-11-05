@@ -47,15 +47,16 @@ jobs:
       - name: Copy files to workflow
         run: cp -r sampleImages ${{runner.workspace}}
 
+      - name: List contents of sampleImages/mosaics (before)
+        run: ls -R $GITHUB_WORKSPACE/sampleImages/mosaics
+
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
         shell: bash
-        # NOTE: You may need to update the path to your sample files
-        # in this command.
         run: ./$EXE_NAME -t
 
-      - name: Wait for images to be generated
-        run: sleep 30
+      - name: List contents of sampleImages/mosaics (after)
+        run: ls -R $GITHUB_WORKSPACE/sampleImages/mosaics
 
       - name: Copy output files to artifact directory
         working-directory: ${{runner.workspace}}/build
