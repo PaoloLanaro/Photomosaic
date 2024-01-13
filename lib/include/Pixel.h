@@ -14,22 +14,25 @@ private:
 public:
     // Constructors
     Pixel(const unsigned int& red, const unsigned int& green, const unsigned int& blue, const unsigned int& alpha = -1);
-
     Pixel() = default;
 
-    // setters for RGBA
+    // setters for RGBA. These are sloppy,
+    // but the easiest way I found to allow for pixels to change after already have been created
+
     void setRedValue(const unsigned int& value);
     void setGreenValue(const unsigned int& value);
     void setBlueValue(const unsigned int& value);
     void setAlpha(const unsigned int& value);
 
     // getters for RGBA
+
     const unsigned int& getRedValue() const;
     const unsigned int& getGreenValue() const;
     const unsigned int& getBlueValue() const;
     const unsigned int& getAlphaValue() const;
 
     // mixed operators for comparisons for the AVLMap
+
     bool operator<(const Pixel &other) const;
     bool operator==(const Pixel &other) const;
     bool operator>(const Pixel& other) const;

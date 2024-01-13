@@ -1,59 +1,67 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/A0poywh0)
-# CS3520 - PA03 - Photomosaics
+# [Photomosaic C++](https://github.com/PaoloLanaro/Photomosaic)
 
-Developer Name: Paolo Lanaro
+by [Paolo Lanaro](https://github.com/PaoloLanaro)
 
-## How to Run the Program
+Creates a simple photomosaic for a source image out of a databank of other images.
 
-There are three ways to run the program. \
-You can choose to run the program with 3 command line arguments, \
-one command line argument, or with no command line arguments. <br>
+## Description
 
-When ran with three command line arguments, the first should be a path \
-to the image you wish to create a photomosaic of. The second argument \
-should be the path to the databank (library) of images you wish to use to \
-construct the photomosaic. The last argument should be the path to the file you wish \
-the completed image to be output to. This method of running the program will \
-result in 80 pixel sized insertions, so it might not be fit for every image. \
-This method of running the program will also make the output a PNG style image. <br>
+This project aims to create [photomosaics](https://en.wikipedia.org/wiki/Photographic_mosaic) out of images provided. 
+The user can both input the databank images, which will refer to the images composing the photomosaic, and a source 
+image, which is the image the user wants to actually create a photomosaic for. There are examples of the program running
+with a databank of ~9000 images under ./sampleImages/mosaics/fullDatabankMosaics. The project uses a AVLMap 
+implementation I created in C++, split among the .cpp and .h files in the library, which allows for a quicker storing
+of the databank images. The time complexity of the running of the program is therefore cut down as I use a fairly 
+efficient data structure to possibly store thousands of images. 
 
-When ran with one command line arg, the program will not allow for any user input \
-and will instead use a predefined example (src image, image databank, and output image) \
-to produce a photomosaic of a lighthouse made of cats! <br>
+## Getting Started
 
-When ran with no command line arguments, the user will be able to control the program \
-from the console. There will be prompts as for what to do, and this way you can create \
-a photomosaic out of paths you provide in the console. <br>
+### Dependencies
 
-## Notes to TAs
+* This program was built on the [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) using CMake version 
+3.22.1
 
-You must first create an `AVLMap<Pixel, Image>` map and call `.loadDirectory(std::string, int)` \
-where the string is the path to the image databank, and the int is the size you wish to resize the \ 
-source images to.
+### Installing
 
-To run the program in the intended fashion, you must instantiate an object of type `Photomosaic`.
-There are two constructors for `Photomosaic`. <br> <br>
-One which takes in `(Image a, std::string b, std::string c, int d)` \
-    a) one Image object, \
-    b) one map for the image database, \
-    c) one file path for the output image, \
-    d) and the length and width you want the replaced images to be (aka imageSquareSizes). <br> <br>
+* The main thing you want to take note of for running this program is your databank's path. I personally recommend using
+a folder with lots of images, such as this [Kaggle set](https://www.kaggle.com/datasets/crawford/cat-dataset). The 
+databank path will be wherever you've saved these images you would like to use, and just has to be the parent directory
+to the images.
+* You should also save the path to the image you would like to create a phtomosaic of, and if the tiles are too big or 
+small, you can either modify these in the driver.cpp file, or run the program with no command line args and use the 
+console.
 
-And one which takes in `(std::string a, std::string b, std::string c, int d)` \
-    a) one file path for the src image. \
-    b) one map for the image database, \
-    c) one file path for the output image, \
-    d) and the length and width you want the replaced images to be (aka imageSquareSizes). <br> <br>
+### Executing program
 
-If you have used the constructor which takes in an `Image` object, you must first initialize \
-said `Image` object by running `Image.readImage()`. You can then proceed to the next step.
+Pass in 3 command line arguments when executing the program. Alternatively run it with no command line arguments and 
+use the console instructions.
 
-You must than run the `.createMosaic()` function on the `Photomosaic` object, which aims to \
-do the "meat" of the construction of the mosaic.  \
-This includes partitioning off the source image, and getting imageSquareSizes^2 chunks of the \
-image, getting the average pixel value from that chunk, and replacing the source image with the \
-image within the databank (AVLMap) that most closely matches the Pixel retrieved from the chunk. 
+* 3 command line arguments should be the following:
+```
+sourceImagePath databankImagesPath outputImagePath
+```
+1) The path to the image you would like to create a photomosaic of.
+2) The path to the databank of images you would like to use to create the photomosaic.
+3) The path you would like to output the image to.
 
-To get the output of the image, you must call `Photomosaic.writeImage(filetype)`, \
-where filetype is an enum class object of `Image::Filetypes`. \
-This will write the image to the preferred extension.
+## Help
+
+The program may take a long time to run, and this is just a consequence of not being able to make some tweaks in time
+for the assignment deadline. If you find the program takes way too long to run (5+ minutes), please contact me! 
+
+If you're having issues with opening the image, make sure the output file includes `.png` after the image's name.
+```
+/outputImagePath/outputImageName.png
+```
+
+There are examples of running the program with a small library and general running code in the testExample() function
+in the driver.cpp file.
+
+For any other issues, please contact me at my email.
+
+## Acknowledgments
+
+This program was made for a "Programming in C++" class assignment at Northeastern University. \
+Dr. [Mark Fontenot](https://github.com/markfontenot) was a big help in questions about AVLMaps and general debugging. \
+I used the [USFCA AVLTree visualizer](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html) to understand 
+the AVLTree and AVLMap. 

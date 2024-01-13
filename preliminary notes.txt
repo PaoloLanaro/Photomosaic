@@ -1,3 +1,6 @@
+*These notes were taken from instructions given in class, these are notes I used to build out the rest of the project*
+*These have not been modified and are definitely very scattered, but just ideas I had when hearing about the assignment*
+
 Resize the whole data set library to 128 x 128 or 256 x 256,
 Read in average red, green, and blue from source images library. Average pixel of the image.
 Put these images into the original image.

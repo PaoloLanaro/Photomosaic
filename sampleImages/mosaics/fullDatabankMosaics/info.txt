@@ -1,1 +1,1 @@
-These were created with a full source databank of ~9000 images.
+These were created with a full source databank of ~9000 cat images provided by kaggle.

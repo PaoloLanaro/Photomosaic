@@ -51,19 +51,6 @@ void testExample() {
     landscapeMosaic.createMosaic();
 
     landscapeMosaic.writeImage(Image::FileTypes::PNG);
-
-
-    // using Image in constructor
-    Image lighthouse("./sampleImages/srcImages/lighthouse4kimage.jpg");
-
-    lighthouse.readImage();
-
-    Photomosaic lighthouseMosaic(lighthouse, sourceImageDictionary,
-                                 "./sampleImages/mosaics/lighthouseMosaicSmallLib.png", imageSquareSizes);
-
-    lighthouseMosaic.createMosaic();
-
-    lighthouseMosaic.writeImage(Image::FileTypes::PNG);
 }
 
 void commandLineUser(const char* argv) {
@@ -99,7 +86,7 @@ void consoleUser() {
     cin >> imageDirPath;
     cout << "Please enter the output file path:\n" << endl;
     cin >> outputImagePath;
-    cout << "Please enter the size you wish the insertions to be:" << endl;
+    cout << "Please enter the size you wish the insertions to be:\n" << endl;
     cin >> insertionSize;
 
     const int imageSquareSizes = std::stoi(insertionSize);
